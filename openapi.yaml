@@ -1,0 +1,216 @@
+openapi: 3.0.0
+info:
+  title: Streaming Video Service API
+  version: "1.0.0"
+  description: API for managing movies and reviews in a streaming video service.
+servers:
+  - url: http://api.streamingvideoservice.com/v1
+paths:
+  /movies:
+    get:
+      summary: Get a list of all movies
+      responses:
+        '200':
+          description: List of movies
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Movie'
+    post:
+      summary: Create a new movie
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Movie'
+      responses:
+        '201':
+          description: Movie created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+  /movies/{movieId}:
+    get:
+      summary: Get movie by ID
+      parameters:
+        - in: path
+          name: movieId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detailed information about the movie
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+        '404':
+          description: Movie not found
+    put:
+      summary: Update movie information
+      parameters:
+        - in: path
+          name: movieId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Movie'
+      responses:
+        '200':
+          description: Movie updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+        '404':
+          description: Movie not found
+    delete:
+      summary: Delete movie
+      parameters:
+        - in: path
+          name: movieId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Movie deleted successfully
+        '404':
+          description: Movie not found
+  /reviews:
+    get:
+      summary: Get list of reviews
+      parameters:
+        - in: query
+          name: movieId
+          schema:
+            type: integer
+          description: Filter reviews by movie ID
+      responses:
+        '200':
+          description: List of reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+    post:
+      summary: Create a new review
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+      responses:
+        '201':
+          description: Review created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+  /reviews/{reviewId}:
+    get:
+      summary: Get review by ID
+      parameters:
+        - in: path
+          name: reviewId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detailed review information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        '404':
+          description: Review not found
+    put:
+      summary: Update review
+      parameters:
+        - in: path
+          name: reviewId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+      responses:
+        '200':
+          description: Review updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        '404':
+          description: Review not found
+    delete:
+      summary: Delete review
+      parameters:
+        - in: path
+          name: reviewId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Review deleted successfully
+        '404':
+          description: Review not found
+components:
+  schemas:
+    Movie:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "Inception"
+        description:
+          type: string
+          example: "A mind-bending thriller."
+        releaseYear:
+          type: integer
+          example: 2010
+      required:
+        - title
+        - releaseYear
+    Review:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        movieId:
+          type: integer
+          example: 1
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 10
+          example: 8
+        comment:
+          type: string
+          example: "Great movie with stunning visuals."
+      required:
+        - movieId
+        - rating
