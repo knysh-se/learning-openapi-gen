@@ -18,9 +18,9 @@ try {
         'description' => 'A mind-bending thriller that explores the nature of dreams.',
         'release_year' => 2010, // если ожидается число; если строка, то '2010'
     ]);
-   // $apiInstance->moviesPost($m);
+    $apiInstance->moviesPost($m);
     $result = $apiInstance->moviesGet();
-    var_dump($result);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->moviesGet: ', $e->getMessage(), PHP_EOL;
 }

@@ -1,5 +1,5 @@
 {
-    "description": "API for managing movies and reviews in a streaming video service.",
+    "description": "API for managing movies and reviews in a streaming video service with authentication.",
     "keywords": [
         "openapitools",
         "openapi-generator",

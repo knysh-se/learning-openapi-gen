@@ -2,7 +2,7 @@
 
 /**
  * Streaming Video Service API
- * API for managing movies and reviews in a streaming video service.
+ * API for managing movies and reviews in a streaming video service with authentication.
  * PHP version 7.2.5
  *
  * The version of the OpenAPI document: 1.0.0

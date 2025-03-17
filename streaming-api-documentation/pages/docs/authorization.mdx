@@ -1,0 +1,41 @@
+# Authorization
+
+This section describes the authorization mechanisms used in the API.
+
+## API Key Authentication
+
+The API uses an API key for authentication.
+
+### Obtaining an API Key
+
+1. Contact the administrator or use the registration process to get an API key.
+2. Add the key to the HTTP request header.
+
+### Example Request with API Key
+
+```http
+GET /movies HTTP/1.1
+Host: localhost:8000
+X-API-KEY: your_api_key_here
+```
+
+### Example Using cURL
+
+```bash
+curl -X GET "http://localhost:8000/api/v1/movies" -H "X-API-KEY: your_api_key_here"
+```
+
+### Error Responses
+
+If the API key is invalid or missing, the server will return the following error:
+
+- **401 Unauthorized** – Missing or invalid API key:
+
+```json
+{
+  "error": "Unauthorized",
+  "message": "Invalid API Key"
+}
+```
+
+---

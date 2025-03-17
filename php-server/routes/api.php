@@ -2,7 +2,7 @@
 
 /**
  * Streaming Video Service API
- * API for managing movies and reviews in a streaming video service.
+ * API for managing movies and reviews in a streaming video service with authentication.
  * PHP version 7.2.5
  *
  * The version of the OpenAPI document: 1.0.0
@@ -27,70 +27,70 @@ use Illuminate\Support\Facades\Route;
  * Notes: 
  * Output-Formats: [application/json]
  */
-Route::get('/v1/movies', 'DefaultController@moviesGet');
+Route::get('/api/v1/movies', 'DefaultController@moviesGet');
 /**
  * post moviesPost
  * Summary: Create a new movie
  * Notes: 
  * Output-Formats: [application/json]
  */
-Route::post('/v1/movies', 'DefaultController@moviesPost');
+Route::post('/api/v1/movies', 'DefaultController@moviesPost');
 /**
  * delete moviesMovieIdDelete
  * Summary: Delete movie
  * Notes: 
 
  */
-Route::delete('/v1/movies/{movieId}', 'DefaultController@moviesMovieIdDelete');
+Route::delete('/api/v1/movies/{movieId}', 'DefaultController@moviesMovieIdDelete');
 /**
  * get moviesMovieIdGet
  * Summary: Get movie by ID
  * Notes: 
  * Output-Formats: [application/json]
  */
-Route::get('/v1/movies/{movieId}', 'DefaultController@moviesMovieIdGet');
+Route::get('/api/v1/movies/{movieId}', 'DefaultController@moviesMovieIdGet');
 /**
  * put moviesMovieIdPut
  * Summary: Update movie information
  * Notes: 
  * Output-Formats: [application/json]
  */
-Route::put('/v1/movies/{movieId}', 'DefaultController@moviesMovieIdPut');
+Route::put('/api/v1/movies/{movieId}', 'DefaultController@moviesMovieIdPut');
 /**
  * get reviewsGet
  * Summary: Get list of reviews
  * Notes: 
  * Output-Formats: [application/json]
  */
-Route::get('/v1/reviews', 'DefaultController@reviewsGet');
+Route::get('/api/v1/reviews', 'DefaultController@reviewsGet');
 /**
  * post reviewsPost
  * Summary: Create a new review
  * Notes: 
  * Output-Formats: [application/json]
  */
-Route::post('/v1/reviews', 'DefaultController@reviewsPost');
+Route::post('/api/v1/reviews', 'DefaultController@reviewsPost');
 /**
  * delete reviewsReviewIdDelete
  * Summary: Delete review
  * Notes: 
 
  */
-Route::delete('/v1/reviews/{reviewId}', 'DefaultController@reviewsReviewIdDelete');
+Route::delete('/api/v1/reviews/{reviewId}', 'DefaultController@reviewsReviewIdDelete');
 /**
  * get reviewsReviewIdGet
  * Summary: Get review by ID
  * Notes: 
  * Output-Formats: [application/json]
  */
-Route::get('/v1/reviews/{reviewId}', 'DefaultController@reviewsReviewIdGet');
+Route::get('/api/v1/reviews/{reviewId}', 'DefaultController@reviewsReviewIdGet');
 /**
  * put reviewsReviewIdPut
  * Summary: Update review
  * Notes: 
  * Output-Formats: [application/json]
  */
-Route::put('/v1/reviews/{reviewId}', 'DefaultController@reviewsReviewIdPut');
+Route::put('/api/v1/reviews/{reviewId}', 'DefaultController@reviewsReviewIdPut');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
